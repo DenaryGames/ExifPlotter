@@ -121,6 +121,19 @@
             // lbFileTypes
             // 
             this.lbFileTypes.FormattingEnabled = true;
+            this.lbFileTypes.Items.AddRange(new object[] {
+            "JPEG",
+            "TIFF",
+            "PSD",
+            "PNG",
+            "BMP",
+            "NEF (Nikon)",
+            "CR2 (Canon)",
+            "ORF (Olympus)",
+            "ARW (Sony)",
+            "RW2 (Panasonic)",
+            "RWL (Leica)",
+            "SRW (Samsung)"});
             this.lbFileTypes.Location = new System.Drawing.Point(9, 99);
             this.lbFileTypes.Name = "lbFileTypes";
             this.lbFileTypes.Size = new System.Drawing.Size(120, 134);
