@@ -14,6 +14,7 @@ namespace ExifPlotter
     {
         private string folderPath = null;
         private bool scanSubFolders = false;
+        private PictureFiles picFiles;
 
         public MainForm()
         {
@@ -39,13 +40,12 @@ namespace ExifPlotter
         private void btnGo_Click(object sender, EventArgs e)
         {
             List<string> selectedFileTypes = new List<string>();
+            Util util = new Util();
 
             if (lbFileTypes.SelectedItems.Count > 0)
             {
-                foreach(string fileType in lbFileTypes.SelectedItems)
-                {
-                    selectedFileTypes.Add(fileType);
-                }
+
+                picFiles = util.FindFiles(folderPath, util.GetPattern(lbFileTypes.SelectedItems), chkSubfolders.Checked);
             }
             else
             {

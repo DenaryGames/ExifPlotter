@@ -125,7 +125,7 @@
             // 
             this.lbFileTypes.FormattingEnabled = true;
             this.lbFileTypes.Items.AddRange(new object[] {
-            "JPEG",
+            "JPG",
             "TIFF",
             "PSD",
             "PNG",
