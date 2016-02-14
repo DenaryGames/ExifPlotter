@@ -8,14 +8,15 @@ using System.Windows.Forms;
 
 namespace ExifPlotter
 {
+    ///<summary>
+    /// Util class for handling various
+    /// file reading etc. tasks.
+    ///</summary>
     class Util
     {
-        public PictureFiles FindFiles(string path, string[] pattern, bool subDirs)
+        public void FindFiles(string path, string[] pattern, bool subDirs, PictureFiles picFiles)
         {
             SearchOption useSubDirs = SearchOption.TopDirectoryOnly;
-
-            // Create PictureFiles object
-            PictureFiles picFiles = new PictureFiles();
 
             // Find files
             if (subDirs)
@@ -28,9 +29,12 @@ namespace ExifPlotter
                 .ToList();
 
             // Add individual pictures
-            // Populate PictureFiles statistics
+            foreach(string pic in files)
+            {
+                picFiles.Add(pic);
+            }
 
-            return null;
+            // Populate PictureFiles statistics
         }
 
         public string[] GetPattern(ListBox.SelectedObjectCollection selectedItems)
