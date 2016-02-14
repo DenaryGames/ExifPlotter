@@ -50,6 +50,10 @@ namespace ExifPlotter
             {
                 MessageBox.Show("Please select at least one file type", "Select File Types", MessageBoxButtons.OK);
             }
+
+            lblFound.Text = "Files found: " + picFiles.pictureCount;
+            lblMissing.Text = "Exif missing: " + picFiles.noExif;
+            lblDuplicates.Text = "Duplicates: " + picFiles.duplicates;
         }
     }
 }

@@ -33,8 +33,6 @@ namespace ExifPlotter
             {
                 picFiles.Add(pic);
             }
-
-            // Populate PictureFiles statistics
         }
 
         public string[] GetPattern(ListBox.SelectedObjectCollection selectedItems)
