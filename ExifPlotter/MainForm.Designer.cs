@@ -39,15 +39,16 @@
             this.chkSubfolders = new System.Windows.Forms.CheckBox();
             this.btnSelectFolder = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblFound = new System.Windows.Forms.Label();
-            this.lblMissing = new System.Windows.Forms.Label();
             this.lblDuplicates = new System.Windows.Forms.Label();
+            this.lblMissing = new System.Windows.Forms.Label();
+            this.lblFound = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.comboField = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboChart = new System.Windows.Forms.ComboBox();
             this.btnPlot = new System.Windows.Forms.Button();
+            this.comboChart = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboField = new System.Windows.Forms.ComboBox();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -102,12 +103,14 @@
             // 
             // btnGo
             // 
+            this.btnGo.Enabled = false;
             this.btnGo.Location = new System.Drawing.Point(9, 239);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(123, 23);
             this.btnGo.TabIndex = 4;
             this.btnGo.Text = "Go!";
             this.btnGo.UseVisualStyleBackColor = true;
+            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
             // label1
             // 
@@ -127,15 +130,16 @@
             "PSD",
             "PNG",
             "BMP",
-            "NEF (Nikon)",
-            "CR2 (Canon)",
-            "ORF (Olympus)",
-            "ARW (Sony)",
-            "RW2 (Panasonic)",
-            "RWL (Leica)",
-            "SRW (Samsung)"});
+            "NEF",
+            "CR2",
+            "ORF",
+            "ARW",
+            "RW2",
+            "RWL",
+            "SRW"});
             this.lbFileTypes.Location = new System.Drawing.Point(9, 99);
             this.lbFileTypes.Name = "lbFileTypes";
+            this.lbFileTypes.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbFileTypes.Size = new System.Drawing.Size(120, 134);
             this.lbFileTypes.TabIndex = 2;
             // 
@@ -157,6 +161,7 @@
             this.btnSelectFolder.TabIndex = 0;
             this.btnSelectFolder.Text = "Select Folder";
             this.btnSelectFolder.UseVisualStyleBackColor = true;
+            this.btnSelectFolder.Click += new System.EventHandler(this.btnSelectFolder_Click);
             // 
             // groupBox2
             // 
@@ -170,14 +175,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Status";
             // 
-            // lblFound
+            // lblDuplicates
             // 
-            this.lblFound.AutoSize = true;
-            this.lblFound.Location = new System.Drawing.Point(7, 20);
-            this.lblFound.Name = "lblFound";
-            this.lblFound.Size = new System.Drawing.Size(70, 13);
-            this.lblFound.TabIndex = 0;
-            this.lblFound.Text = "Files found: 0";
+            this.lblDuplicates.AutoSize = true;
+            this.lblDuplicates.Location = new System.Drawing.Point(7, 54);
+            this.lblDuplicates.Name = "lblDuplicates";
+            this.lblDuplicates.Size = new System.Drawing.Size(69, 13);
+            this.lblDuplicates.TabIndex = 2;
+            this.lblDuplicates.Text = "Duplicates: 0";
             // 
             // lblMissing
             // 
@@ -188,14 +193,14 @@
             this.lblMissing.TabIndex = 1;
             this.lblMissing.Text = "Exif missing: 0";
             // 
-            // lblDuplicates
+            // lblFound
             // 
-            this.lblDuplicates.AutoSize = true;
-            this.lblDuplicates.Location = new System.Drawing.Point(7, 54);
-            this.lblDuplicates.Name = "lblDuplicates";
-            this.lblDuplicates.Size = new System.Drawing.Size(69, 13);
-            this.lblDuplicates.TabIndex = 2;
-            this.lblDuplicates.Text = "Duplicates: 0";
+            this.lblFound.AutoSize = true;
+            this.lblFound.Location = new System.Drawing.Point(7, 20);
+            this.lblFound.Name = "lblFound";
+            this.lblFound.Size = new System.Drawing.Size(70, 13);
+            this.lblFound.TabIndex = 0;
+            this.lblFound.Text = "Files found: 0";
             // 
             // groupBox3
             // 
@@ -211,22 +216,22 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Plot";
             // 
-            // comboField
+            // btnPlot
             // 
-            this.comboField.FormattingEnabled = true;
-            this.comboField.Location = new System.Drawing.Point(7, 38);
-            this.comboField.Name = "comboField";
-            this.comboField.Size = new System.Drawing.Size(121, 21);
-            this.comboField.TabIndex = 0;
+            this.btnPlot.Location = new System.Drawing.Point(7, 156);
+            this.btnPlot.Name = "btnPlot";
+            this.btnPlot.Size = new System.Drawing.Size(121, 23);
+            this.btnPlot.TabIndex = 4;
+            this.btnPlot.Text = "Plot!";
+            this.btnPlot.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // comboChart
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Field:";
+            this.comboChart.FormattingEnabled = true;
+            this.comboChart.Location = new System.Drawing.Point(7, 83);
+            this.comboChart.Name = "comboChart";
+            this.comboChart.Size = new System.Drawing.Size(121, 21);
+            this.comboChart.TabIndex = 3;
             // 
             // label3
             // 
@@ -237,22 +242,37 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Chart:";
             // 
-            // comboChart
+            // label2
             // 
-            this.comboChart.FormattingEnabled = true;
-            this.comboChart.Location = new System.Drawing.Point(7, 83);
-            this.comboChart.Name = "comboChart";
-            this.comboChart.Size = new System.Drawing.Size(121, 21);
-            this.comboChart.TabIndex = 3;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(32, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Field:";
             // 
-            // btnPlot
+            // comboField
             // 
-            this.btnPlot.Location = new System.Drawing.Point(7, 156);
-            this.btnPlot.Name = "btnPlot";
-            this.btnPlot.Size = new System.Drawing.Size(121, 23);
-            this.btnPlot.TabIndex = 4;
-            this.btnPlot.Text = "Plot!";
-            this.btnPlot.UseVisualStyleBackColor = true;
+            this.comboField.FormattingEnabled = true;
+            this.comboField.Items.AddRange(new object[] {
+            "Camera maker",
+            "Camera model",
+            "ISO",
+            "F-stop",
+            "Exposure time",
+            "Program",
+            "Metering",
+            "Flash mode",
+            "Focal length",
+            "Date taken"});
+            this.comboField.Location = new System.Drawing.Point(7, 38);
+            this.comboField.Name = "comboField";
+            this.comboField.Size = new System.Drawing.Size(121, 21);
+            this.comboField.TabIndex = 0;
+            // 
+            // folderBrowserDialog1
+            // 
+            this.folderBrowserDialog1.ShowNewFolderButton = false;
             // 
             // MainForm
             // 
@@ -302,6 +322,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboField;
         private System.Windows.Forms.Button btnPlot;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 
