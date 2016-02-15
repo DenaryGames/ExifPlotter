@@ -224,10 +224,13 @@
             this.btnPlot.TabIndex = 4;
             this.btnPlot.Text = "Plot!";
             this.btnPlot.UseVisualStyleBackColor = true;
+            this.btnPlot.Click += new System.EventHandler(this.btnPlot_Click);
             // 
             // comboChart
             // 
             this.comboChart.FormattingEnabled = true;
+            this.comboChart.Items.AddRange(new object[] {
+            "Bar"});
             this.comboChart.Location = new System.Drawing.Point(7, 83);
             this.comboChart.Name = "comboChart";
             this.comboChart.Size = new System.Drawing.Size(121, 21);

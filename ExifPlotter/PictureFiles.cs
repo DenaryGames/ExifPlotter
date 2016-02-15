@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace ExifPlotter
 {
-    class PictureFiles
+    class PictureFiles : IEnumerator, IEnumerable
     {
         private List<Picture> pictures;
+        int position = -1;
 
         public PictureFiles()
         {
@@ -50,6 +52,8 @@ namespace ExifPlotter
         {
             get
             {
+                return 0;
+                /*
                 int count = 0;
                 foreach(Picture pic in pictures)
                 {
@@ -62,7 +66,30 @@ namespace ExifPlotter
                     }
                 }
                 return count;
+                */
             }
+        }
+        //IEnumerator and IEnumerable require these methods.
+        public IEnumerator GetEnumerator()
+        {
+            return (IEnumerator)this;
+        }
+
+        //IEnumerator
+        public bool MoveNext()
+        {
+            position++;
+            return (position < pictures.Count);
+        }
+
+        //IEnumerable
+        public void Reset()
+        { position = 0; }
+
+        //IEnumerable
+        public object Current
+        {
+            get { return pictures[position]; }
         }
     }
 }

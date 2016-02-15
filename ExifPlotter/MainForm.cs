@@ -53,7 +53,16 @@ namespace ExifPlotter
 
             lblFound.Text = "Files found: " + picFiles.pictureCount;
             lblMissing.Text = "Exif missing: " + picFiles.noExif;
-            lblDuplicates.Text = "Duplicates: " + picFiles.duplicates;
+            //lblDuplicates.Text = "Duplicates: " + picFiles.duplicates;        
+        }
+
+        private void btnPlot_Click(object sender, EventArgs e)
+        {
+            Statistics stats = new Statistics(picFiles);
+            List<StatItem> statsList = stats.GenerateFocalStatsBar();
+            statsList.Sort();
+
+            new ChartForm(statsList, "bar").Show();
         }
     }
 }
